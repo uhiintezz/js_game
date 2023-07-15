@@ -6,6 +6,8 @@ var $timeHeader = document.querySelector('#time-header')
 var $resultHeader = document.querySelector('#result-header')
 var $gameTime = document.querySelector('#game-time')
 
+var colors = ['#CB356B', '#BD3F32', '#3A1C71', '#D76D77', '#283c86', '#45a247', '#8e44ad', '#155799', 
+'#159957', '#000046', '#1cb5e0', '#2f80ed']
 var score = 0
 var isGameStarted = false
 
@@ -87,10 +89,12 @@ function renderBox() {
     var gameSize = $game.getBoundingClientRect()
     var maxTop = gameSize.height - boxSize 
     var maxLeft = gameSize.width - boxSize
+    var randomColorIndex = getRandom(0, colors.length)
+
 
     box.style.height = box.style.width = boxSize + 'px'
     box.style.position = 'absolute'
-    box.style.backgroundColor = 'red'
+    box.style.backgroundColor = colors[randomColorIndex]
     box.style.left = getRandom(0, maxLeft) + 'px'
     box.style.top = getRandom(0, maxTop) + 'px'
     box.style.cursor = 'pointer'
@@ -104,10 +108,5 @@ function getRandom(min, max) {
 }
 
 function getRandomColorHex() {
-    const letters = "23456789ABCDE";
-    var color = "#";
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 14)];
-    }
-    return color;
+    return Math.floor(Math.random() * ( max - min ) + min)
 }
